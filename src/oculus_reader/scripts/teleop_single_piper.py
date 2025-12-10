@@ -316,8 +316,8 @@ class VR:
         if  b :
             self.piper_control.joint_control_piper(sol_q[0],sol_q[1],sol_q[2],sol_q[3],sol_q[4],sol_q[5],gripper)
             print("ctrolling!!!")
-        # else :
-        #     print("collision!!!")
+        if is_collision :
+            print("\33[31m-------------------       Robotic arm self-collision!!!       -----------------------------\033[0m") 
 
     def handle_pose_callback(self, msg):
         # print(msg.pose.position.x, msg.pose.position.y, msg.pose.position.z)

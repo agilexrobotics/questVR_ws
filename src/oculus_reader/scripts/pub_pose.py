@@ -132,12 +132,9 @@ class OculusPublisher:
         try:
             while not rospy.is_shutdown():
                 transformations, _ = self.oculus_reader.get_transformations_and_buttons()
-                # if 'r' not in transformations:
-                #     self.rate.sleep()
-                #     continue
-                # if 'l' not in transformations:
-                #     self.rate.sleep()
-                #     continue
+                if 'r' not in transformations or 'l' not in transformations:
+                    self.rate.sleep()
+                    continue
                 
                 right_controller_pose = self.adjustment_matrix(transformations['r'])
                 left_controller_pose = self.adjustment_matrix(transformations['l'])
