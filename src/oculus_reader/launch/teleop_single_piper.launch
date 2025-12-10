@@ -1,8 +1,11 @@
 <launch>
-  <!-- <node name="oculus_broadcaster" pkg="tf" type="static_transform_publisher"
-        args="0 0 0 -1.570796 0 1.570796 world init_head 100" /> -->
+
   <include file="$(find piper)/launch/start_single_piper.launch"/>
-  <node name="oculus_reader" pkg="oculus_reader" type="teleop_single_piper.py" output="screen">
-  </node>
+
+  <node name="teleop_single_piper_node" pkg="oculus_reader" type="teleop_single_piper.py" output="screen" />
+
+  <node name="pub_pose_node" pkg="oculus_reader" type="pub_pose.py" output="screen" />
+
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find oculus_reader)/config/oculus_reader.rviz" />
+  
 </launch>
